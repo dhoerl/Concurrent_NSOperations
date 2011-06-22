@@ -1,0 +1,298 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DE4C1EFF13B24BD60049981F /* ConcurrentOp.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4C1EFD13B24BD60049981F /* ConcurrentOp.m */; };
+		DE4C1F0013B24BD60049981F /* README in Resources */ = {isa = PBXBuildFile; fileRef = DE4C1EFE13B24BD60049981F /* README */; };
+		DE9FF33513AA233800BB4388 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE9FF33413AA233800BB4388 /* Cocoa.framework */; };
+		DE9FF33F13AA233800BB4388 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DE9FF33D13AA233800BB4388 /* InfoPlist.strings */; };
+		DE9FF34213AA233800BB4388 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DE9FF34113AA233800BB4388 /* main.m */; };
+		DE9FF34513AA233800BB4388 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = DE9FF34313AA233800BB4388 /* Credits.rtf */; };
+		DE9FF34813AA233800BB4388 /* Concurrent_NSOperations_MacAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DE9FF34713AA233800BB4388 /* Concurrent_NSOperations_MacAppDelegate.m */; };
+		DE9FF34B13AA233800BB4388 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE9FF34913AA233800BB4388 /* MainMenu.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		DE4C1EFC13B24BD60049981F /* ConcurrentOp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConcurrentOp.h; path = ../ConcurrentOp.h; sourceTree = "<group>"; };
+		DE4C1EFD13B24BD60049981F /* ConcurrentOp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConcurrentOp.m; path = ../ConcurrentOp.m; sourceTree = "<group>"; };
+		DE4C1EFE13B24BD60049981F /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README; path = ../README; sourceTree = "<group>"; };
+		DE9FF33013AA233800BB4388 /* Concurrent_NSOperations_Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Concurrent_NSOperations_Mac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE9FF33413AA233800BB4388 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		DE9FF33713AA233800BB4388 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		DE9FF33813AA233800BB4388 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		DE9FF33913AA233800BB4388 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DE9FF33C13AA233800BB4388 /* Concurrent_NSOperations_Mac-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Concurrent_NSOperations_Mac-Info.plist"; sourceTree = "<group>"; };
+		DE9FF33E13AA233800BB4388 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DE9FF34013AA233800BB4388 /* Concurrent_NSOperations_Mac-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Concurrent_NSOperations_Mac-Prefix.pch"; sourceTree = "<group>"; };
+		DE9FF34113AA233800BB4388 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DE9FF34413AA233800BB4388 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		DE9FF34613AA233800BB4388 /* Concurrent_NSOperations_MacAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Concurrent_NSOperations_MacAppDelegate.h; sourceTree = "<group>"; };
+		DE9FF34713AA233800BB4388 /* Concurrent_NSOperations_MacAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Concurrent_NSOperations_MacAppDelegate.m; sourceTree = "<group>"; };
+		DE9FF34A13AA233800BB4388 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DE9FF32D13AA233800BB4388 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE9FF33513AA233800BB4388 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DE9FF32513AA233800BB4388 = {
+			isa = PBXGroup;
+			children = (
+				DE4C1EFC13B24BD60049981F /* ConcurrentOp.h */,
+				DE4C1EFD13B24BD60049981F /* ConcurrentOp.m */,
+				DE4C1EFE13B24BD60049981F /* README */,
+				DE9FF33A13AA233800BB4388 /* Concurrent_NSOperations_Mac */,
+				DE9FF33313AA233800BB4388 /* Frameworks */,
+				DE9FF33113AA233800BB4388 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DE9FF33113AA233800BB4388 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DE9FF33013AA233800BB4388 /* Concurrent_NSOperations_Mac.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DE9FF33313AA233800BB4388 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DE9FF33413AA233800BB4388 /* Cocoa.framework */,
+				DE9FF33613AA233800BB4388 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DE9FF33613AA233800BB4388 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DE9FF33713AA233800BB4388 /* AppKit.framework */,
+				DE9FF33813AA233800BB4388 /* CoreData.framework */,
+				DE9FF33913AA233800BB4388 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		DE9FF33A13AA233800BB4388 /* Concurrent_NSOperations_Mac */ = {
+			isa = PBXGroup;
+			children = (
+				DE9FF34613AA233800BB4388 /* Concurrent_NSOperations_MacAppDelegate.h */,
+				DE9FF34713AA233800BB4388 /* Concurrent_NSOperations_MacAppDelegate.m */,
+				DE9FF34913AA233800BB4388 /* MainMenu.xib */,
+				DE9FF33B13AA233800BB4388 /* Supporting Files */,
+			);
+			path = Concurrent_NSOperations_Mac;
+			sourceTree = "<group>";
+		};
+		DE9FF33B13AA233800BB4388 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DE9FF33C13AA233800BB4388 /* Concurrent_NSOperations_Mac-Info.plist */,
+				DE9FF33D13AA233800BB4388 /* InfoPlist.strings */,
+				DE9FF34013AA233800BB4388 /* Concurrent_NSOperations_Mac-Prefix.pch */,
+				DE9FF34113AA233800BB4388 /* main.m */,
+				DE9FF34313AA233800BB4388 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DE9FF32F13AA233800BB4388 /* Concurrent_NSOperations_Mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DE9FF34E13AA233800BB4388 /* Build configuration list for PBXNativeTarget "Concurrent_NSOperations_Mac" */;
+			buildPhases = (
+				DE9FF32C13AA233800BB4388 /* Sources */,
+				DE9FF32D13AA233800BB4388 /* Frameworks */,
+				DE9FF32E13AA233800BB4388 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Concurrent_NSOperations_Mac;
+			productName = Concurrent_NSOperations_Mac;
+			productReference = DE9FF33013AA233800BB4388 /* Concurrent_NSOperations_Mac.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DE9FF32713AA233800BB4388 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = DE9FF32A13AA233800BB4388 /* Build configuration list for PBXProject "Concurrent_NSOperations_Mac" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DE9FF32513AA233800BB4388;
+			productRefGroup = DE9FF33113AA233800BB4388 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DE9FF32F13AA233800BB4388 /* Concurrent_NSOperations_Mac */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DE9FF32E13AA233800BB4388 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE9FF33F13AA233800BB4388 /* InfoPlist.strings in Resources */,
+				DE9FF34513AA233800BB4388 /* Credits.rtf in Resources */,
+				DE9FF34B13AA233800BB4388 /* MainMenu.xib in Resources */,
+				DE4C1F0013B24BD60049981F /* README in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DE9FF32C13AA233800BB4388 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE9FF34213AA233800BB4388 /* main.m in Sources */,
+				DE9FF34813AA233800BB4388 /* Concurrent_NSOperations_MacAppDelegate.m in Sources */,
+				DE4C1EFF13B24BD60049981F /* ConcurrentOp.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		DE9FF33D13AA233800BB4388 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DE9FF33E13AA233800BB4388 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		DE9FF34313AA233800BB4388 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DE9FF34413AA233800BB4388 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		DE9FF34913AA233800BB4388 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DE9FF34A13AA233800BB4388 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DE9FF34C13AA233800BB4388 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		DE9FF34D13AA233800BB4388 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		DE9FF34F13AA233800BB4388 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Concurrent_NSOperations_Mac/Concurrent_NSOperations_Mac-Prefix.pch";
+				INFOPLIST_FILE = "Concurrent_NSOperations_Mac/Concurrent_NSOperations_Mac-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		DE9FF35013AA233800BB4388 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Concurrent_NSOperations_Mac/Concurrent_NSOperations_Mac-Prefix.pch";
+				INFOPLIST_FILE = "Concurrent_NSOperations_Mac/Concurrent_NSOperations_Mac-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DE9FF32A13AA233800BB4388 /* Build configuration list for PBXProject "Concurrent_NSOperations_Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DE9FF34C13AA233800BB4388 /* Debug */,
+				DE9FF34D13AA233800BB4388 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DE9FF34E13AA233800BB4388 /* Build configuration list for PBXNativeTarget "Concurrent_NSOperations_Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DE9FF34F13AA233800BB4388 /* Debug */,
+				DE9FF35013AA233800BB4388 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DE9FF32713AA233800BB4388 /* Project object */;
+}

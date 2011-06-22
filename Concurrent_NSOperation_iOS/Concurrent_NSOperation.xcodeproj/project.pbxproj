@@ -1,0 +1,468 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DE8E788613A6AC050007CD7A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE8E788513A6AC050007CD7A /* UIKit.framework */; };
+		DE8E788813A6AC050007CD7A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE8E788713A6AC050007CD7A /* Foundation.framework */; };
+		DE8E788A13A6AC050007CD7A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE8E788913A6AC050007CD7A /* CoreGraphics.framework */; };
+		DE8E789013A6AC050007CD7A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DE8E788E13A6AC050007CD7A /* InfoPlist.strings */; };
+		DE8E789313A6AC050007CD7A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8E789213A6AC050007CD7A /* main.m */; };
+		DE8E789613A6AC050007CD7A /* Concurrent_NSOperationAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8E789513A6AC050007CD7A /* Concurrent_NSOperationAppDelegate.m */; };
+		DE8E789913A6AC050007CD7A /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE8E789713A6AC050007CD7A /* MainWindow.xib */; };
+		DE8E789C13A6AC050007CD7A /* Concurrent_NSOperationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8E789B13A6AC050007CD7A /* Concurrent_NSOperationViewController.m */; };
+		DE8E789F13A6AC050007CD7A /* Concurrent_NSOperationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE8E789D13A6AC050007CD7A /* Concurrent_NSOperationViewController.xib */; };
+		DE8E78A613A6AC050007CD7A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE8E788513A6AC050007CD7A /* UIKit.framework */; };
+		DE8E78A713A6AC050007CD7A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE8E788713A6AC050007CD7A /* Foundation.framework */; };
+		DE8E78A813A6AC050007CD7A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE8E788913A6AC050007CD7A /* CoreGraphics.framework */; };
+		DE8E78B013A6AC050007CD7A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DE8E78AE13A6AC050007CD7A /* InfoPlist.strings */; };
+		DE8E78B313A6AC050007CD7A /* Concurrent_NSOperationTests.h in Resources */ = {isa = PBXBuildFile; fileRef = DE8E78B213A6AC050007CD7A /* Concurrent_NSOperationTests.h */; };
+		DE8E78B513A6AC050007CD7A /* Concurrent_NSOperationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8E78B413A6AC050007CD7A /* Concurrent_NSOperationTests.m */; };
+		DE8E78CE13A6AC8B0007CD7A /* ConcurrentOp.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8E78CD13A6AC8B0007CD7A /* ConcurrentOp.m */; };
+		DE8E78CF13A6AC8B0007CD7A /* ConcurrentOp.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8E78CD13A6AC8B0007CD7A /* ConcurrentOp.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DE8E78A913A6AC050007CD7A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DE8E787813A6AC040007CD7A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DE8E788013A6AC040007CD7A;
+			remoteInfo = Concurrent_NSOperation;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DE8E788113A6AC050007CD7A /* Concurrent_NSOperation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Concurrent_NSOperation.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE8E788513A6AC050007CD7A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		DE8E788713A6AC050007CD7A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DE8E788913A6AC050007CD7A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		DE8E788D13A6AC050007CD7A /* Concurrent_NSOperation-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Concurrent_NSOperation-Info.plist"; sourceTree = "<group>"; };
+		DE8E788F13A6AC050007CD7A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DE8E789113A6AC050007CD7A /* Concurrent_NSOperation-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Concurrent_NSOperation-Prefix.pch"; sourceTree = "<group>"; };
+		DE8E789213A6AC050007CD7A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DE8E789413A6AC050007CD7A /* Concurrent_NSOperationAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Concurrent_NSOperationAppDelegate.h; sourceTree = "<group>"; };
+		DE8E789513A6AC050007CD7A /* Concurrent_NSOperationAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Concurrent_NSOperationAppDelegate.m; sourceTree = "<group>"; };
+		DE8E789813A6AC050007CD7A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		DE8E789A13A6AC050007CD7A /* Concurrent_NSOperationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Concurrent_NSOperationViewController.h; sourceTree = "<group>"; };
+		DE8E789B13A6AC050007CD7A /* Concurrent_NSOperationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Concurrent_NSOperationViewController.m; sourceTree = "<group>"; };
+		DE8E789E13A6AC050007CD7A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Concurrent_NSOperationViewController.xib; sourceTree = "<group>"; };
+		DE8E78A513A6AC050007CD7A /* Concurrent_NSOperationTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Concurrent_NSOperationTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE8E78AD13A6AC050007CD7A /* Concurrent_NSOperationTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Concurrent_NSOperationTests-Info.plist"; sourceTree = "<group>"; };
+		DE8E78AF13A6AC050007CD7A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DE8E78B113A6AC050007CD7A /* Concurrent_NSOperationTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Concurrent_NSOperationTests-Prefix.pch"; sourceTree = "<group>"; };
+		DE8E78B213A6AC050007CD7A /* Concurrent_NSOperationTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Concurrent_NSOperationTests.h; sourceTree = "<group>"; };
+		DE8E78B413A6AC050007CD7A /* Concurrent_NSOperationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Concurrent_NSOperationTests.m; sourceTree = "<group>"; };
+		DE8E78CC13A6AC8B0007CD7A /* ConcurrentOp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConcurrentOp.h; path = ../../ConcurrentOp.h; sourceTree = "<group>"; };
+		DE8E78CD13A6AC8B0007CD7A /* ConcurrentOp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConcurrentOp.m; path = ../../ConcurrentOp.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DE8E787E13A6AC040007CD7A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE8E788613A6AC050007CD7A /* UIKit.framework in Frameworks */,
+				DE8E788813A6AC050007CD7A /* Foundation.framework in Frameworks */,
+				DE8E788A13A6AC050007CD7A /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DE8E78A113A6AC050007CD7A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE8E78A613A6AC050007CD7A /* UIKit.framework in Frameworks */,
+				DE8E78A713A6AC050007CD7A /* Foundation.framework in Frameworks */,
+				DE8E78A813A6AC050007CD7A /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DE8E787613A6AC040007CD7A = {
+			isa = PBXGroup;
+			children = (
+				DE8E788B13A6AC050007CD7A /* Concurrent_NSOperation */,
+				DE8E78AB13A6AC050007CD7A /* Concurrent_NSOperationTests */,
+				DE8E788413A6AC050007CD7A /* Frameworks */,
+				DE8E788213A6AC050007CD7A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DE8E788213A6AC050007CD7A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DE8E788113A6AC050007CD7A /* Concurrent_NSOperation.app */,
+				DE8E78A513A6AC050007CD7A /* Concurrent_NSOperationTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DE8E788413A6AC050007CD7A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DE8E788513A6AC050007CD7A /* UIKit.framework */,
+				DE8E788713A6AC050007CD7A /* Foundation.framework */,
+				DE8E788913A6AC050007CD7A /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DE8E788B13A6AC050007CD7A /* Concurrent_NSOperation */ = {
+			isa = PBXGroup;
+			children = (
+				DE8E789413A6AC050007CD7A /* Concurrent_NSOperationAppDelegate.h */,
+				DE8E789513A6AC050007CD7A /* Concurrent_NSOperationAppDelegate.m */,
+				DE8E789713A6AC050007CD7A /* MainWindow.xib */,
+				DE8E789A13A6AC050007CD7A /* Concurrent_NSOperationViewController.h */,
+				DE8E789B13A6AC050007CD7A /* Concurrent_NSOperationViewController.m */,
+				DE8E789D13A6AC050007CD7A /* Concurrent_NSOperationViewController.xib */,
+				DE8E788C13A6AC050007CD7A /* Supporting Files */,
+				DE8E78CC13A6AC8B0007CD7A /* ConcurrentOp.h */,
+				DE8E78CD13A6AC8B0007CD7A /* ConcurrentOp.m */,
+			);
+			path = Concurrent_NSOperation;
+			sourceTree = "<group>";
+		};
+		DE8E788C13A6AC050007CD7A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DE8E788D13A6AC050007CD7A /* Concurrent_NSOperation-Info.plist */,
+				DE8E788E13A6AC050007CD7A /* InfoPlist.strings */,
+				DE8E789113A6AC050007CD7A /* Concurrent_NSOperation-Prefix.pch */,
+				DE8E789213A6AC050007CD7A /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DE8E78AB13A6AC050007CD7A /* Concurrent_NSOperationTests */ = {
+			isa = PBXGroup;
+			children = (
+				DE8E78B213A6AC050007CD7A /* Concurrent_NSOperationTests.h */,
+				DE8E78B413A6AC050007CD7A /* Concurrent_NSOperationTests.m */,
+				DE8E78AC13A6AC050007CD7A /* Supporting Files */,
+			);
+			path = Concurrent_NSOperationTests;
+			sourceTree = "<group>";
+		};
+		DE8E78AC13A6AC050007CD7A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DE8E78AD13A6AC050007CD7A /* Concurrent_NSOperationTests-Info.plist */,
+				DE8E78AE13A6AC050007CD7A /* InfoPlist.strings */,
+				DE8E78B113A6AC050007CD7A /* Concurrent_NSOperationTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DE8E788013A6AC040007CD7A /* Concurrent_NSOperation */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DE8E78B813A6AC050007CD7A /* Build configuration list for PBXNativeTarget "Concurrent_NSOperation" */;
+			buildPhases = (
+				DE8E787D13A6AC040007CD7A /* Sources */,
+				DE8E787E13A6AC040007CD7A /* Frameworks */,
+				DE8E787F13A6AC040007CD7A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Concurrent_NSOperation;
+			productName = Concurrent_NSOperation;
+			productReference = DE8E788113A6AC050007CD7A /* Concurrent_NSOperation.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DE8E78A413A6AC050007CD7A /* Concurrent_NSOperationTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DE8E78BB13A6AC050007CD7A /* Build configuration list for PBXNativeTarget "Concurrent_NSOperationTests" */;
+			buildPhases = (
+				DE8E78A013A6AC050007CD7A /* Sources */,
+				DE8E78A113A6AC050007CD7A /* Frameworks */,
+				DE8E78A213A6AC050007CD7A /* Resources */,
+				DE8E78A313A6AC050007CD7A /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DE8E78AA13A6AC050007CD7A /* PBXTargetDependency */,
+			);
+			name = Concurrent_NSOperationTests;
+			productName = Concurrent_NSOperationTests;
+			productReference = DE8E78A513A6AC050007CD7A /* Concurrent_NSOperationTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DE8E787813A6AC040007CD7A /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = DE8E787B13A6AC040007CD7A /* Build configuration list for PBXProject "Concurrent_NSOperation" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DE8E787613A6AC040007CD7A;
+			productRefGroup = DE8E788213A6AC050007CD7A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DE8E788013A6AC040007CD7A /* Concurrent_NSOperation */,
+				DE8E78A413A6AC050007CD7A /* Concurrent_NSOperationTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DE8E787F13A6AC040007CD7A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE8E789013A6AC050007CD7A /* InfoPlist.strings in Resources */,
+				DE8E789913A6AC050007CD7A /* MainWindow.xib in Resources */,
+				DE8E789F13A6AC050007CD7A /* Concurrent_NSOperationViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DE8E78A213A6AC050007CD7A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE8E78B013A6AC050007CD7A /* InfoPlist.strings in Resources */,
+				DE8E78B313A6AC050007CD7A /* Concurrent_NSOperationTests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DE8E78A313A6AC050007CD7A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DE8E787D13A6AC040007CD7A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE8E789313A6AC050007CD7A /* main.m in Sources */,
+				DE8E789613A6AC050007CD7A /* Concurrent_NSOperationAppDelegate.m in Sources */,
+				DE8E789C13A6AC050007CD7A /* Concurrent_NSOperationViewController.m in Sources */,
+				DE8E78CE13A6AC8B0007CD7A /* ConcurrentOp.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DE8E78A013A6AC050007CD7A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE8E78B513A6AC050007CD7A /* Concurrent_NSOperationTests.m in Sources */,
+				DE8E78CF13A6AC8B0007CD7A /* ConcurrentOp.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DE8E78AA13A6AC050007CD7A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DE8E788013A6AC040007CD7A /* Concurrent_NSOperation */;
+			targetProxy = DE8E78A913A6AC050007CD7A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DE8E788E13A6AC050007CD7A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DE8E788F13A6AC050007CD7A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		DE8E789713A6AC050007CD7A /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DE8E789813A6AC050007CD7A /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		DE8E789D13A6AC050007CD7A /* Concurrent_NSOperationViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DE8E789E13A6AC050007CD7A /* en */,
+			);
+			name = Concurrent_NSOperationViewController.xib;
+			sourceTree = "<group>";
+		};
+		DE8E78AE13A6AC050007CD7A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DE8E78AF13A6AC050007CD7A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DE8E78B613A6AC050007CD7A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		DE8E78B713A6AC050007CD7A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		DE8E78B913A6AC050007CD7A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Concurrent_NSOperation/Concurrent_NSOperation-Prefix.pch";
+				INFOPLIST_FILE = "Concurrent_NSOperation/Concurrent_NSOperation-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		DE8E78BA13A6AC050007CD7A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Concurrent_NSOperation/Concurrent_NSOperation-Prefix.pch";
+				INFOPLIST_FILE = "Concurrent_NSOperation/Concurrent_NSOperation-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		DE8E78BC13A6AC050007CD7A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Concurrent_NSOperation.app/Concurrent_NSOperation";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Concurrent_NSOperationTests/Concurrent_NSOperationTests-Prefix.pch";
+				INFOPLIST_FILE = "Concurrent_NSOperationTests/Concurrent_NSOperationTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		DE8E78BD13A6AC050007CD7A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Concurrent_NSOperation.app/Concurrent_NSOperation";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Concurrent_NSOperationTests/Concurrent_NSOperationTests-Prefix.pch";
+				INFOPLIST_FILE = "Concurrent_NSOperationTests/Concurrent_NSOperationTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DE8E787B13A6AC040007CD7A /* Build configuration list for PBXProject "Concurrent_NSOperation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DE8E78B613A6AC050007CD7A /* Debug */,
+				DE8E78B713A6AC050007CD7A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DE8E78B813A6AC050007CD7A /* Build configuration list for PBXNativeTarget "Concurrent_NSOperation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DE8E78B913A6AC050007CD7A /* Debug */,
+				DE8E78BA13A6AC050007CD7A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DE8E78BB13A6AC050007CD7A /* Build configuration list for PBXNativeTarget "Concurrent_NSOperationTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DE8E78BC13A6AC050007CD7A /* Debug */,
+				DE8E78BD13A6AC050007CD7A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DE8E787813A6AC040007CD7A /* Project object */;
+}
