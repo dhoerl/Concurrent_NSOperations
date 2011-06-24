@@ -3,7 +3,7 @@
 //  Concurrent_NSOperations_Mac
 //
 //  Created by David Hoerl on 6/16/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 David Hoerl. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>

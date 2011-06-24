@@ -3,8 +3,10 @@
 //  Concurrent_NSOperation
 //
 //  Created by David Hoerl on 6/13/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 David Hoerl. All rights reserved.
 //
+
+#import <TargetConditionals.h>
 
 #import "ConcurrentOp.h"
 
@@ -39,12 +41,13 @@
 
 - (void)start
 {
-	NSLog(@"START");
 	if([self isCancelled]) {
 NSLog(@"Yikes! I'm cancelled before I even started!");
 		[self finish];
 		return;
 	}
+
+	NSLog(@"START");
 
 	loops = 1;	// testing
 	self.thread	= [NSThread currentThread];	// do this first, to enable future messaging
@@ -67,6 +70,9 @@ NSLog(@"Yikes! I'm cancelled before I even started!");
 		NSLog(@"SETUP FAILED");
 		[self finish];
 	}
+	
+	// Timer is retaining us
+	[timer invalidate], self.timer = nil;
 }
 
 - (BOOL)setup
@@ -75,6 +81,10 @@ NSLog(@"Yikes! I'm cancelled before I even started!");
 	
 	NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString: @"http://images.apple.com/home/images/icloud_title.png"]];
 	self.connection =  [[[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO] autorelease];
+
+#ifdef MAC_BUG // Apple bug in OSX (still in Snow Leopard)
+	[connection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+#endif
 
 	return !failInSetup;	// testing
 }
@@ -93,7 +103,6 @@ NSLog(@"Yikes! I'm cancelled before I even started!");
 
 - (void)cancel
 {
-	NSLog(@"myThread=%x mainthread=%x thisThread=%x", thread, [NSThread mainThread], [NSThread currentThread]);
 	[super cancel];
 	
 	if([self isExecuting]) {
@@ -120,6 +129,8 @@ NSLog(@"Yikes! I'm cancelled before I even started!");
 
 - (void)dealloc
 {
+	NSLog(@"Operation dealloc");
+
 	[timer invalidate], [timer release];
 	[connection cancel], [connection release];
 	[webData release];

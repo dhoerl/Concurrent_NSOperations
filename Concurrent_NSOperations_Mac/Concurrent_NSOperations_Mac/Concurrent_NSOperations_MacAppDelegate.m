@@ -3,7 +3,7 @@
 //  Concurrent_NSOperations_Mac
 //
 //  Created by David Hoerl on 6/16/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 David Hoerl. All rights reserved.
 //
 
 #import "Concurrent_NSOperations_MacAppDelegate.h"
@@ -14,9 +14,9 @@ static char *runnerContext = "runnerContext";
 
 @interface Concurrent_NSOperations_MacAppDelegate ()
 @property (nonatomic, retain) NSOperationQueue *queue;
-@property (nonatomic, retain) ConcurrentOp *runner;
+@property (nonatomic, retain) NSMutableSet *operations;
 
-- (void)operationDidFinish;
+- (void)operationDidFinish:(ConcurrentOp *)operation;
 
 @end
 
@@ -31,7 +31,15 @@ static char *runnerContext = "runnerContext";
 @synthesize failSwitch;
 @synthesize spinner;
 @synthesize queue;
-@synthesize runner;
+@synthesize operations;
+
+- (id)init
+{
+	if((self = [super init])) {
+		self.operations = [NSMutableSet setWithCapacity:1];
+	}
+	return self;
+}
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -45,7 +53,7 @@ static char *runnerContext = "runnerContext";
 
 - (IBAction)runNow:(id)sender
 {
-	self.runner = [[ConcurrentOp new] autorelease];
+	ConcurrentOp *runner = [[ConcurrentOp new] autorelease];
 	runner.failInSetup = [failSwitch state];
 
 	[run setEnabled:NO];
@@ -65,39 +73,52 @@ static char *runnerContext = "runnerContext";
 - (IBAction)cancelNow:(id)sender
 {
 	[queue cancelAllOperations];
-	//[runner cancel];
+	[queue waitUntilAllOperationsAreFinished];
+	
+	for (id object in operations)
+	{
+		[object removeObserver:self forKeyPath:@"isFinished"];
+	}
+    
+    [self.operations removeAllObjects];
 }
 
+// These three methods are how we can safely message the Operation directly without a "convenience" method in the operation class itself
 - (IBAction)messageNow:(id)sender
 {
-	[runner performSelector:@selector(wakeUp) onThread:runner.thread withObject:nil waitUntilDone:NO];
+	for(ConcurrentOp *op in operations)
+		[op performSelector:@selector(wakeUp) onThread:op.thread withObject:nil waitUntilDone:NO];
 }
 
 - (IBAction)finishNow:(id)sender
 {
-	[runner performSelector:@selector(finish) onThread:runner.thread withObject:nil waitUntilDone:NO];
+	for(ConcurrentOp *op in operations)
+		[op performSelector:@selector(finish) onThread:op.thread withObject:nil waitUntilDone:NO];
 }
 
 - (IBAction)connectNow:(id)sender
 {
-	[runner performSelector:@selector(runConnection) onThread:runner.thread withObject:nil waitUntilDone:NO];
+	for(ConcurrentOp *op in operations)
+		[op performSelector:@selector(runConnection) onThread:op.thread withObject:nil waitUntilDone:NO];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
+	ConcurrentOp *op = object;
 	if(context == runnerContext) {
-		if(runner.isFinished == YES) {
+		if(op.isFinished == YES) {
 			// we get this on the operation's thread
-			[self performSelectorOnMainThread:@selector(operationDidFinish) withObject:nil waitUntilDone:NO];
+			[self performSelectorOnMainThread:@selector(operationDidFinish:) withObject:op waitUntilDone:NO];
 		} else {
 			NSLog(@"NSOperation starting to RUN!!!");
 		}
 	} else {
-		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+		if([object respondsToSelector:@selector(observeValueForKeyPath:ofObject:change:context:)])
+			[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
 	}
 }
 
-- (void)operationDidFinish
+- (void)operationDidFinish:(ConcurrentOp *)operation
 {
 	[run setEnabled:YES];
 	[cancel setEnabled:NO];
@@ -106,8 +127,21 @@ static char *runnerContext = "runnerContext";
 	[connectionOp setEnabled:NO];
 	[spinner stopAnimation:self];
 
-	NSLog(@"Operation Did End: webData = %lx", (unsigned long)runner.webData);
-	self.runner = nil;
+	// what you would want in real world situations below
+
+	// if you cancel the operation when it's in the set, will hit this case
+	if(![self.operations containsObject:operation]) return;
+	
+	// or we get called here when canceled but not yet removed from the set,
+	// when we cancel, we remove when we get control back at that time
+	if(operation.isCancelled) return;
+	
+	// Success path: should remove self as an observer
+	[operation removeObserver:self forKeyPath:@"isFinished"]; // race condition - do this first
+	[self.operations removeObject:operation];	
+	// Runner still valid since performSelector retains the object til this method returns
+
+	NSLog(@"Operation Did End: webData = %lx", (unsigned long)operation.webData);
 }
 
 - (void)dealloc
@@ -116,7 +150,7 @@ static char *runnerContext = "runnerContext";
     [cancel release];
     [spinner release];
 	[queue release];
-	[runner release];
+	[operations release];
 	[failSwitch release];
 	[finishOp release];
 	[messageOp release];

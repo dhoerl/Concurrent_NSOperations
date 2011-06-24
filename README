@@ -1,0 +1,26 @@
+This project allows you to explore the full usage of Concurrent NSOperations. Refer to Apple's "Concurrency Programming Guide", the NSOpeation Class Reference, and the NSOperationQueue class reference for general background details.
+
+The above docs tell you that concurrent operations exist, but also tell you they have little value for most developers. Well that might have been true at one time, but on iOS this style meshes perfectly with asunchronous NSURLConnections.
+
+The code contained in this project lets you run a concurrent operation, message it, have it perform a NSURLConnection image fetch, and cancel it. Although the app only ever runs one operation, it uses a mutable set to hold the operation. The usage of the set makes cancellation race conditions easier to handle. Those who wish to use concurrent operations can get a head start by using the code sections where this set is used.
+
+					USAGE
+					
+The "Cancel Before Running" on/off button lets you optionally force the condition of cancellation occurring while the operation is in the OperationQueue but hs not yet started.
+
+"Run" instantiates an operation and adds it to both the mutable set and the operation queue.
+
+"Fail In Setup" optionally sets a flag so the setup method of the operation mimics a real setup failure.
+
+"Message" send the operation a selector (which does nothing itself) on every press. On the fifth press the operation sets itself as finished and thus completes.
+
+"Cancel" sends the queue a "cancelAllOperations" message, which is what you would do in your code if you needed to force everything to stop (in iOS - think user hits back button).
+
+"Run Connection" starts the NSURLConnection, which completes when either a failure occurrs or an image is downloaded from Apple's site.
+
+
+HAVE FUN!
+
+Suggestions or corrections to dhoerl@mac.com.
+
+Copyright 2011 David Hoerl. All rights reserved.

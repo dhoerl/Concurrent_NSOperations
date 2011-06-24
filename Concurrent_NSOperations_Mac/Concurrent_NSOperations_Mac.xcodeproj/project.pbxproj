@@ -18,8 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		DE4C1EFC13B24BD60049981F /* ConcurrentOp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConcurrentOp.h; path = ../ConcurrentOp.h; sourceTree = "<group>"; };
-		DE4C1EFD13B24BD60049981F /* ConcurrentOp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConcurrentOp.m; path = ../ConcurrentOp.m; sourceTree = "<group>"; };
+		DE4C1EFC13B24BD60049981F /* ConcurrentOp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConcurrentOp.h; path = ../../ConcurrentOp.h; sourceTree = "<group>"; };
+		DE4C1EFD13B24BD60049981F /* ConcurrentOp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConcurrentOp.m; path = ../../ConcurrentOp.m; sourceTree = "<group>"; };
 		DE4C1EFE13B24BD60049981F /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README; path = ../README; sourceTree = "<group>"; };
 		DE9FF33013AA233800BB4388 /* Concurrent_NSOperations_Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Concurrent_NSOperations_Mac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE9FF33413AA233800BB4388 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -51,8 +51,6 @@
 		DE9FF32513AA233800BB4388 = {
 			isa = PBXGroup;
 			children = (
-				DE4C1EFC13B24BD60049981F /* ConcurrentOp.h */,
-				DE4C1EFD13B24BD60049981F /* ConcurrentOp.m */,
 				DE4C1EFE13B24BD60049981F /* README */,
 				DE9FF33A13AA233800BB4388 /* Concurrent_NSOperations_Mac */,
 				DE9FF33313AA233800BB4388 /* Frameworks */,
@@ -92,6 +90,8 @@
 			children = (
 				DE9FF34613AA233800BB4388 /* Concurrent_NSOperations_MacAppDelegate.h */,
 				DE9FF34713AA233800BB4388 /* Concurrent_NSOperations_MacAppDelegate.m */,
+				DE4C1EFC13B24BD60049981F /* ConcurrentOp.h */,
+				DE4C1EFD13B24BD60049981F /* ConcurrentOp.m */,
 				DE9FF34913AA233800BB4388 /* MainMenu.xib */,
 				DE9FF33B13AA233800BB4388 /* Supporting Files */,
 			);
@@ -221,6 +221,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "-DMAC_BUG";
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -235,6 +236,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				OTHER_CFLAGS = "-DMAC_BUG";
 				SDKROOT = macosx;
 			};
 			name = Release;
