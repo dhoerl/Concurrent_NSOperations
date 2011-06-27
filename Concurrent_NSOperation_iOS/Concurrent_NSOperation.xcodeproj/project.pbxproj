@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DE4C1F3113B4C0650049981F /* README in Resources */ = {isa = PBXBuildFile; fileRef = DE4C1F3013B4C0650049981F /* README */; };
 		DE8E788613A6AC050007CD7A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE8E788513A6AC050007CD7A /* UIKit.framework */; };
 		DE8E788813A6AC050007CD7A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE8E788713A6AC050007CD7A /* Foundation.framework */; };
 		DE8E788A13A6AC050007CD7A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE8E788913A6AC050007CD7A /* CoreGraphics.framework */; };
@@ -19,9 +20,6 @@
 		DE8E78A613A6AC050007CD7A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE8E788513A6AC050007CD7A /* UIKit.framework */; };
 		DE8E78A713A6AC050007CD7A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE8E788713A6AC050007CD7A /* Foundation.framework */; };
 		DE8E78A813A6AC050007CD7A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE8E788913A6AC050007CD7A /* CoreGraphics.framework */; };
-		DE8E78B013A6AC050007CD7A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DE8E78AE13A6AC050007CD7A /* InfoPlist.strings */; };
-		DE8E78B313A6AC050007CD7A /* Concurrent_NSOperationTests.h in Resources */ = {isa = PBXBuildFile; fileRef = DE8E78B213A6AC050007CD7A /* Concurrent_NSOperationTests.h */; };
-		DE8E78B513A6AC050007CD7A /* Concurrent_NSOperationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8E78B413A6AC050007CD7A /* Concurrent_NSOperationTests.m */; };
 		DE8E78CE13A6AC8B0007CD7A /* ConcurrentOp.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8E78CD13A6AC8B0007CD7A /* ConcurrentOp.m */; };
 		DE8E78CF13A6AC8B0007CD7A /* ConcurrentOp.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8E78CD13A6AC8B0007CD7A /* ConcurrentOp.m */; };
 /* End PBXBuildFile section */
@@ -37,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DE4C1F3013B4C0650049981F /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README; path = ../README; sourceTree = "<group>"; };
 		DE8E788113A6AC050007CD7A /* Concurrent_NSOperation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Concurrent_NSOperation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE8E788513A6AC050007CD7A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DE8E788713A6AC050007CD7A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -52,11 +51,6 @@
 		DE8E789B13A6AC050007CD7A /* Concurrent_NSOperationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Concurrent_NSOperationViewController.m; sourceTree = "<group>"; };
 		DE8E789E13A6AC050007CD7A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Concurrent_NSOperationViewController.xib; sourceTree = "<group>"; };
 		DE8E78A513A6AC050007CD7A /* Concurrent_NSOperationTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Concurrent_NSOperationTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DE8E78AD13A6AC050007CD7A /* Concurrent_NSOperationTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Concurrent_NSOperationTests-Info.plist"; sourceTree = "<group>"; };
-		DE8E78AF13A6AC050007CD7A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		DE8E78B113A6AC050007CD7A /* Concurrent_NSOperationTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Concurrent_NSOperationTests-Prefix.pch"; sourceTree = "<group>"; };
-		DE8E78B213A6AC050007CD7A /* Concurrent_NSOperationTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Concurrent_NSOperationTests.h; sourceTree = "<group>"; };
-		DE8E78B413A6AC050007CD7A /* Concurrent_NSOperationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Concurrent_NSOperationTests.m; sourceTree = "<group>"; };
 		DE8E78CC13A6AC8B0007CD7A /* ConcurrentOp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConcurrentOp.h; path = ../../ConcurrentOp.h; sourceTree = "<group>"; };
 		DE8E78CD13A6AC8B0007CD7A /* ConcurrentOp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConcurrentOp.m; path = ../../ConcurrentOp.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -88,8 +82,8 @@
 		DE8E787613A6AC040007CD7A = {
 			isa = PBXGroup;
 			children = (
+				DE4C1F3013B4C0650049981F /* README */,
 				DE8E788B13A6AC050007CD7A /* Concurrent_NSOperation */,
-				DE8E78AB13A6AC050007CD7A /* Concurrent_NSOperationTests */,
 				DE8E788413A6AC050007CD7A /* Frameworks */,
 				DE8E788213A6AC050007CD7A /* Products */,
 			);
@@ -137,26 +131,6 @@
 				DE8E788E13A6AC050007CD7A /* InfoPlist.strings */,
 				DE8E789113A6AC050007CD7A /* Concurrent_NSOperation-Prefix.pch */,
 				DE8E789213A6AC050007CD7A /* main.m */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		DE8E78AB13A6AC050007CD7A /* Concurrent_NSOperationTests */ = {
-			isa = PBXGroup;
-			children = (
-				DE8E78B213A6AC050007CD7A /* Concurrent_NSOperationTests.h */,
-				DE8E78B413A6AC050007CD7A /* Concurrent_NSOperationTests.m */,
-				DE8E78AC13A6AC050007CD7A /* Supporting Files */,
-			);
-			path = Concurrent_NSOperationTests;
-			sourceTree = "<group>";
-		};
-		DE8E78AC13A6AC050007CD7A /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				DE8E78AD13A6AC050007CD7A /* Concurrent_NSOperationTests-Info.plist */,
-				DE8E78AE13A6AC050007CD7A /* InfoPlist.strings */,
-				DE8E78B113A6AC050007CD7A /* Concurrent_NSOperationTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -231,6 +205,7 @@
 				DE8E789013A6AC050007CD7A /* InfoPlist.strings in Resources */,
 				DE8E789913A6AC050007CD7A /* MainWindow.xib in Resources */,
 				DE8E789F13A6AC050007CD7A /* Concurrent_NSOperationViewController.xib in Resources */,
+				DE4C1F3113B4C0650049981F /* README in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,8 +213,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE8E78B013A6AC050007CD7A /* InfoPlist.strings in Resources */,
-				DE8E78B313A6AC050007CD7A /* Concurrent_NSOperationTests.h in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,7 +250,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE8E78B513A6AC050007CD7A /* Concurrent_NSOperationTests.m in Sources */,
 				DE8E78CF13A6AC8B0007CD7A /* ConcurrentOp.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -315,14 +287,6 @@
 				DE8E789E13A6AC050007CD7A /* en */,
 			);
 			name = Concurrent_NSOperationViewController.xib;
-			sourceTree = "<group>";
-		};
-		DE8E78AE13A6AC050007CD7A /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DE8E78AF13A6AC050007CD7A /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -3,7 +3,7 @@
 //  Concurrent_NSOperation
 //
 //  Created by David Hoerl on 6/13/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 David Hoerl. All rights reserved.
 //
 
 #import "Concurrent_NSOperationViewController.h"
@@ -13,11 +13,10 @@
 static char *runnerContext = "runnerContext";
 
 @interface Concurrent_NSOperationViewController ()
-
 @property (nonatomic, retain) NSOperationQueue *queue;
-@property (nonatomic, retain) ConcurrentOp *runner;
+@property (nonatomic, retain) NSMutableSet *operations;
 
-- (void)operationDidFinish;
+- (void)operationDidFinish:(ConcurrentOp *)operation;
 
 @end
 
@@ -31,11 +30,11 @@ static char *runnerContext = "runnerContext";
 @synthesize failSwitch;
 @synthesize spinner;
 @synthesize queue;
-@synthesize runner;
+@synthesize operations;
 
 - (IBAction)runNow:(id)sender
 {
-	self.runner = [[ConcurrentOp new] autorelease];
+	ConcurrentOp *runner = [[ConcurrentOp new] autorelease];
 	runner.failInSetup = failSwitch.on;
 
 	run.enabled = NO, run.alpha = 0.5f;
@@ -45,39 +44,50 @@ static char *runnerContext = "runnerContext";
 	connectionOp.enabled = YES, connectionOp.alpha = 1.0f;
 	[spinner startAnimating];
 	
-	[runner addObserver:self forKeyPath:@"isFinished" options:0 context:runnerContext];
-	// Have to be observing to get finished which happens when this case is hit
+	// Mimics a cancel that occurrs when the operation is queued but not executing
 	if(preCancel.on) [runner cancel];
-	NSLog(@"isCancelled = %d", [runner isCancelled]);
-	[queue addOperation:runner];
+	
+	// Order is important here
+	[runner addObserver:self forKeyPath:@"isFinished" options:0 context:runnerContext];	// First, observe isFinished
+	[operations addObject:runner];	// Second we retain and save a reference to the operation
+	[queue addOperation:runner];	// Lastly, lets get going!
 }
 
 - (IBAction)cancelNow:(id)sender
 {
 	[queue cancelAllOperations];
-	//[runner cancel];
+	[queue waitUntilAllOperationsAreFinished];
+	
+	[operations enumerateObjectsUsingBlock:^(id obj, BOOL *stop) { [obj removeObserver:self forKeyPath:@"isFinished"]; }];   
+    [self.operations removeAllObjects];
 }
 
+// These three methods are how we can safely message the Operation directly without a "convenience" method in the operation class itself
 - (IBAction)messageNow:(id)sender
 {
-	[runner performSelector:@selector(wakeUp) onThread:runner.thread withObject:nil waitUntilDone:NO];
+	for(ConcurrentOp *op in operations)
+		[op performSelector:@selector(wakeUp) onThread:op.thread withObject:nil waitUntilDone:NO];
 }
 
 - (IBAction)finishNow:(id)sender
 {
-	[runner performSelector:@selector(finish) onThread:runner.thread withObject:nil waitUntilDone:NO];
+	for(ConcurrentOp *op in operations)
+		[op performSelector:@selector(finish) onThread:op.thread withObject:nil waitUntilDone:NO];
 }
 
 - (IBAction)connectNow:(id)sender
 {
-	[runner performSelector:@selector(runConnection) onThread:runner.thread withObject:nil waitUntilDone:NO];
+	for(ConcurrentOp *op in operations)
+		[op runConnection]; // convenience method - call directly
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	
+	self.operations = [NSMutableSet setWithCapacity:1];
 	self.queue = [[NSOperationQueue new] autorelease];
+
 	cancel.enabled = NO, cancel.alpha = 0.5f;
 	messageOp.enabled = NO, messageOp.alpha = 0.5f;
 	finishOp.enabled = NO, finishOp.alpha = 0.5f;
@@ -87,20 +97,23 @@ static char *runnerContext = "runnerContext";
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
+	ConcurrentOp *op = object;
 	if(context == runnerContext) {
-		if(runner.isFinished == YES) {
+		if(op.isFinished == YES) {
 			// we get this on the operation's thread
-			[self performSelectorOnMainThread:@selector(operationDidFinish) withObject:nil waitUntilDone:NO];
+			[self performSelectorOnMainThread:@selector(operationDidFinish:) withObject:op waitUntilDone:NO];
 		} else {
-			NSLog(@"NSOperation starting to RUN!!!");
+			//NSLog(@"NSOperation starting to RUN!!!");
 		}
 	} else {
-		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+		if([object respondsToSelector:@selector(observeValueForKeyPath:ofObject:change:context:)])
+			[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
 	}
 }
 
-- (void)operationDidFinish
+- (void)operationDidFinish:(ConcurrentOp *)operation
 {
+	// in support of test code
 	run.enabled = YES, run.alpha = 1.0f;
 	cancel.enabled = NO, cancel.alpha = 0.5f;
 	messageOp.enabled = NO, messageOp.alpha = 0.5f;
@@ -108,8 +121,21 @@ static char *runnerContext = "runnerContext";
 	connectionOp.enabled = NO, connectionOp.alpha = 0.5f;
 	[spinner stopAnimating];
 
-	NSLog(@"Operation Did End: webData = %lx", (unsigned long)runner.webData);
-	self.runner = nil;
+	// what you would want in real world situations below
+
+	// if you cancel the operation when its in the set, will hit this case
+	// since observeValueForKeyPath: queues this message on the main thread
+	if(![self.operations containsObject:operation]) return;
+	
+	// If we are in the queue, then we have to both remove our observation and queue membership
+	[operation removeObserver:self forKeyPath:@"isFinished"];
+	[operations removeObject:operation];
+	
+	// This would be the case if cancelled before we start running.
+	if(operation.isCancelled) return;
+	
+	// We either failed in setup or succeeded doing something.
+	NSLog(@"Operation Succeeded: webData = %lx", (unsigned long)operation.webData);
 }
 
 - (void)viewDidUnload
@@ -124,9 +150,8 @@ static char *runnerContext = "runnerContext";
 	[self setMessageOp:nil];
     [self setConnectionOp:nil];
 	[self setPreCancel:nil];
+
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (void)dealloc
@@ -135,22 +160,15 @@ static char *runnerContext = "runnerContext";
     [cancel release];
     [spinner release];
 	[queue release];
-	[runner release];
 	[failSwitch release];
 	[finishOp release];
 	[messageOp release];
     [connectionOp release];
 	[preCancel release];
+
     [super dealloc];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
 
 #pragma mark - View lifecycle
 

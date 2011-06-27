@@ -3,7 +3,7 @@
 //  Concurrent_NSOperation
 //
 //  Created by David Hoerl on 6/13/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 David Hoerl. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
