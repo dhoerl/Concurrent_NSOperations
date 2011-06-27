@@ -1,10 +1,33 @@
+
+// Concurrent_NSOperation (TM)
+// Copyright (C) 2011 by David Hoerl
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+//
+
 This project allows you to explore the full usage of Concurrent NSOperations. Refer to Apple's "Concurrency Programming Guide", the NSOpeation Class Reference, and the NSOperationQueue class reference for general background details.
 
 The above docs tell you that concurrent operations exist, but also tell you they have little value for most developers. Well that might have been true at one time, but on iOS this style meshes perfectly with asunchronous NSURLConnections.
 
 The code contained in this project lets you run a concurrent operation, message it, have it perform a NSURLConnection image fetch, and cancel it. Although the app only ever runs one operation, it uses a mutable set to hold the operation. The usage of the set makes cancellation race conditions easier to handle. Those who wish to use concurrent operations can get a head start by using the code sections where this set is used.
 
-					USAGE
+USAGE
 					
 The "Cancel Before Running" on/off button lets you optionally force the condition of cancellation occurring while the operation is in the OperationQueue but hs not yet started.
 
@@ -21,6 +44,4 @@ The "Cancel Before Running" on/off button lets you optionally force the conditio
 
 HAVE FUN!
 
-Suggestions or corrections to dhoerl@mac.com.
-
-Copyright 2011 David Hoerl. All rights reserved.
+Suggestions or corrections to dhoerl at mac dot com

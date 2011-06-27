@@ -33,17 +33,11 @@ static char *runnerContext = "runnerContext";
 @synthesize queue;
 @synthesize operations;
 
-- (id)init
-{
-	if((self = [super init])) {
-		self.operations = [NSMutableSet setWithCapacity:1];
-	}
-	return self;
-}
-
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+	self.operations = [NSMutableSet setWithCapacity:1];
 	self.queue = [[NSOperationQueue new] autorelease];
+	
 	[cancel setEnabled:NO];
 	[messageOp setEnabled:NO];
 	[finishOp setEnabled:NO];
@@ -63,11 +57,13 @@ static char *runnerContext = "runnerContext";
 	[connectionOp setEnabled:YES];
 	[spinner startAnimation:self];
 	
-	[runner addObserver:self forKeyPath:@"isFinished" options:0 context:runnerContext];
-	// Have to be observing to get finished which happens when this case is hit
+	// Mimics a cancel that occurrs when the operation is queued but not executing
 	if([preCancel state]) [runner cancel];
-	NSLog(@"isCancelled = %d", [runner isCancelled]);
-	[queue addOperation:runner];
+	
+	// Order is important here
+	[runner addObserver:self forKeyPath:@"isFinished" options:0 context:runnerContext];	// First, observe isFinished
+	[operations addObject:runner];	// Second we retain and save a reference to the operation
+	[queue addOperation:runner];	// Lastly, lets get going!
 }
 
 - (IBAction)cancelNow:(id)sender
@@ -75,11 +71,8 @@ static char *runnerContext = "runnerContext";
 	[queue cancelAllOperations];
 	[queue waitUntilAllOperationsAreFinished];
 	
-	for (id object in operations)
-	{
-		[object removeObserver:self forKeyPath:@"isFinished"];
-	}
-    
+	// note that all the operationDidFinish: messages are now queued in the main runLoop.
+	[operations enumerateObjectsUsingBlock:^(id obj, BOOL *stop) { [obj removeObserver:self forKeyPath:@"isFinished"]; }];
     [self.operations removeAllObjects];
 }
 
@@ -110,7 +103,7 @@ static char *runnerContext = "runnerContext";
 			// we get this on the operation's thread
 			[self performSelectorOnMainThread:@selector(operationDidFinish:) withObject:op waitUntilDone:NO];
 		} else {
-			NSLog(@"NSOperation starting to RUN!!!");
+			//NSLog(@"NSOperation starting to RUN!!!");
 		}
 	} else {
 		if([object respondsToSelector:@selector(observeValueForKeyPath:ofObject:change:context:)])
@@ -120,6 +113,7 @@ static char *runnerContext = "runnerContext";
 
 - (void)operationDidFinish:(ConcurrentOp *)operation
 {
+	// Test Code
 	[run setEnabled:YES];
 	[cancel setEnabled:NO];
 	[messageOp setEnabled:NO];
@@ -129,19 +123,19 @@ static char *runnerContext = "runnerContext";
 
 	// what you would want in real world situations below
 
-	// if you cancel the operation when it's in the set, will hit this case
+	// if you cancel the operation when its in the set, will hit this case
+	// since observeValueForKeyPath: queues this message on the main thread
 	if(![self.operations containsObject:operation]) return;
 	
-	// or we get called here when canceled but not yet removed from the set,
-	// when we cancel, we remove when we get control back at that time
+	// If we are in the queue, then we have to both remove our observation and queue membership
+	[operation removeObserver:self forKeyPath:@"isFinished"];
+	[operations removeObject:operation];
+	
+	// This would be the case if cancelled before we start running.
 	if(operation.isCancelled) return;
 	
-	// Success path: should remove self as an observer
-	[operation removeObserver:self forKeyPath:@"isFinished"]; // race condition - do this first
-	[self.operations removeObject:operation];	
-	// Runner still valid since performSelector retains the object til this method returns
-
-	NSLog(@"Operation Did End: webData = %lx", (unsigned long)operation.webData);
+	// We either failed in setup or succeeded doing something.
+	NSLog(@"Operation Succeeded: webData = %lx", (unsigned long)operation.webData);
 }
 
 - (void)dealloc

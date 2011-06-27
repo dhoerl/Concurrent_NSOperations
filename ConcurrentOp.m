@@ -6,8 +6,6 @@
 //  Copyright 2011 David Hoerl. All rights reserved.
 //
 
-#import <TargetConditionals.h>
-
 #import "ConcurrentOp.h"
 
 
@@ -18,7 +16,6 @@
 @property (nonatomic, retain) NSURLConnection *connection;
 
 - (BOOL)setup;
-- (void)finish;
 - (void)timer:(NSTimer *)timer;
 
 @end
@@ -42,12 +39,15 @@
 - (void)start
 {
 	if([self isCancelled]) {
-NSLog(@"Yikes! I'm cancelled before I even started!");
-		[self finish];
+		NSLog(@"OP: cancelled before I even started!");
+		[self willChangeValueForKey:@"isFinished"];
+		finished = YES;
+		[self didChangeValueForKey:@"isFinished"];
 		return;
 	}
 
-	NSLog(@"START");
+	NSLog(@"OP: start");
+	NSAutoreleasePool *pool = [NSAutoreleasePool new];
 
 	loops = 1;	// testing
 	self.thread	= [NSThread currentThread];	// do this first, to enable future messaging
@@ -61,28 +61,31 @@ NSLog(@"Yikes! I'm cancelled before I even started!");
 
 	if(allOK) {
 		while(![self isFinished]) {
-			NSLog(@"main: sitting in loop (loops=%d)", loops);
+			//NSLog(@"main: sitting in loop (loops=%d)", loops);
 			BOOL ret = [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
-			assert(ret);
+			assert(ret && "first assert"); // could remove this - its here to convince myself all is well
 		}
-		NSLog(@"FINISHED!!!");
+		NSLog(@"OP: finished - %@", [self isCancelled] ? @"was canceled" : @"normal completion");
 	} else {
-		NSLog(@"SETUP FAILED");
 		[self finish];
+
+		NSLog(@"OP: finished - setup failed");
+		[timer invalidate], self.timer = nil;
+		[connection cancel], self.connection = nil;
 	}
-	
-	// Timer is retaining us
+	// Objects retaining us
 	[timer invalidate], self.timer = nil;
+	[connection cancel], self.connection = nil;
+	[pool drain];
 }
 
 - (BOOL)setup
 {
-	NSLog(@"SETUP");
-	
+	NSLog(@"OP: setup");
 	NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString: @"http://images.apple.com/home/images/icloud_title.png"]];
 	self.connection =  [[[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO] autorelease];
 
-#ifdef MAC_BUG // Apple bug in OSX (still in Snow Leopard)
+#if !TARGET_OS_IPHONE // Apple bug in OSX (still in Snow Leopard)
 	[connection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
 #endif
 
@@ -91,7 +94,7 @@ NSLog(@"Yikes! I'm cancelled before I even started!");
 
 - (void)wakeUp
 {
-	NSLog(@"WAKEUP!!!");
+	NSLog(@"OP: was messaged!!!");
 	if(loops++ >= 4)
 		[self performSelector:@selector(finish) onThread:thread withObject:nil waitUntilDone:NO];
 }
@@ -108,11 +111,11 @@ NSLog(@"Yikes! I'm cancelled before I even started!");
 	if([self isExecuting]) {
 		[self performSelector:@selector(finish) onThread:thread withObject:nil waitUntilDone:NO];
 	}
-	NSLog(@"CANCEL");
 }
 
 - (void)finish
 {
+	// This order per the Concurrency Guide - some authors switch the didChangeValueForKey order.
 	[self willChangeValueForKey:@"isFinished"];
 	[self willChangeValueForKey:@"isExecuting"];
 
@@ -129,7 +132,7 @@ NSLog(@"Yikes! I'm cancelled before I even started!");
 
 - (void)dealloc
 {
-	NSLog(@"Operation dealloc");
+	NSLog(@"OP: dealloc"); // didn't always see this message :-)
 
 	[timer invalidate], [timer release];
 	[connection cancel], [connection release];
@@ -188,7 +191,7 @@ NSLog(@"Yikes! I'm cancelled before I even started!");
 #ifndef NDEBUG
 	//NSLog(@"ConcurrentOp FINISHED LOADING WITH Received Bytes: %u", [webData length]);
 #endif
-
+	// could use a NSXMLParser here too.
 	[self finish];
 }
 
