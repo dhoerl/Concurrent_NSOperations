@@ -17,22 +17,8 @@
 		DE8E789913A6AC050007CD7A /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE8E789713A6AC050007CD7A /* MainWindow.xib */; };
 		DE8E789C13A6AC050007CD7A /* Concurrent_NSOperationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8E789B13A6AC050007CD7A /* Concurrent_NSOperationViewController.m */; };
 		DE8E789F13A6AC050007CD7A /* Concurrent_NSOperationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE8E789D13A6AC050007CD7A /* Concurrent_NSOperationViewController.xib */; };
-		DE8E78A613A6AC050007CD7A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE8E788513A6AC050007CD7A /* UIKit.framework */; };
-		DE8E78A713A6AC050007CD7A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE8E788713A6AC050007CD7A /* Foundation.framework */; };
-		DE8E78A813A6AC050007CD7A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE8E788913A6AC050007CD7A /* CoreGraphics.framework */; };
 		DE8E78CE13A6AC8B0007CD7A /* ConcurrentOp.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8E78CD13A6AC8B0007CD7A /* ConcurrentOp.m */; };
-		DE8E78CF13A6AC8B0007CD7A /* ConcurrentOp.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8E78CD13A6AC8B0007CD7A /* ConcurrentOp.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		DE8E78A913A6AC050007CD7A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DE8E787813A6AC040007CD7A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DE8E788013A6AC040007CD7A;
-			remoteInfo = Concurrent_NSOperation;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		DE4C1F3013B4C0650049981F /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README; path = ../README; sourceTree = "<group>"; };
@@ -50,7 +36,6 @@
 		DE8E789A13A6AC050007CD7A /* Concurrent_NSOperationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Concurrent_NSOperationViewController.h; sourceTree = "<group>"; };
 		DE8E789B13A6AC050007CD7A /* Concurrent_NSOperationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Concurrent_NSOperationViewController.m; sourceTree = "<group>"; };
 		DE8E789E13A6AC050007CD7A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Concurrent_NSOperationViewController.xib; sourceTree = "<group>"; };
-		DE8E78A513A6AC050007CD7A /* Concurrent_NSOperationTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Concurrent_NSOperationTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE8E78CC13A6AC8B0007CD7A /* ConcurrentOp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConcurrentOp.h; path = ../../ConcurrentOp.h; sourceTree = "<group>"; };
 		DE8E78CD13A6AC8B0007CD7A /* ConcurrentOp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConcurrentOp.m; path = ../../ConcurrentOp.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -63,16 +48,6 @@
 				DE8E788613A6AC050007CD7A /* UIKit.framework in Frameworks */,
 				DE8E788813A6AC050007CD7A /* Foundation.framework in Frameworks */,
 				DE8E788A13A6AC050007CD7A /* CoreGraphics.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DE8E78A113A6AC050007CD7A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DE8E78A613A6AC050007CD7A /* UIKit.framework in Frameworks */,
-				DE8E78A713A6AC050007CD7A /* Foundation.framework in Frameworks */,
-				DE8E78A813A6AC050007CD7A /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,7 +68,6 @@
 			isa = PBXGroup;
 			children = (
 				DE8E788113A6AC050007CD7A /* Concurrent_NSOperation.app */,
-				DE8E78A513A6AC050007CD7A /* Concurrent_NSOperationTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -155,25 +129,6 @@
 			productReference = DE8E788113A6AC050007CD7A /* Concurrent_NSOperation.app */;
 			productType = "com.apple.product-type.application";
 		};
-		DE8E78A413A6AC050007CD7A /* Concurrent_NSOperationTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DE8E78BB13A6AC050007CD7A /* Build configuration list for PBXNativeTarget "Concurrent_NSOperationTests" */;
-			buildPhases = (
-				DE8E78A013A6AC050007CD7A /* Sources */,
-				DE8E78A113A6AC050007CD7A /* Frameworks */,
-				DE8E78A213A6AC050007CD7A /* Resources */,
-				DE8E78A313A6AC050007CD7A /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				DE8E78AA13A6AC050007CD7A /* PBXTargetDependency */,
-			);
-			name = Concurrent_NSOperationTests;
-			productName = Concurrent_NSOperationTests;
-			productReference = DE8E78A513A6AC050007CD7A /* Concurrent_NSOperationTests.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -192,7 +147,6 @@
 			projectRoot = "";
 			targets = (
 				DE8E788013A6AC040007CD7A /* Concurrent_NSOperation */,
-				DE8E78A413A6AC050007CD7A /* Concurrent_NSOperationTests */,
 			);
 		};
 /* End PBXProject section */
@@ -209,30 +163,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DE8E78A213A6AC050007CD7A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		DE8E78A313A6AC050007CD7A /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DE8E787D13A6AC040007CD7A /* Sources */ = {
@@ -246,23 +177,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DE8E78A013A6AC050007CD7A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DE8E78CF13A6AC8B0007CD7A /* ConcurrentOp.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		DE8E78AA13A6AC050007CD7A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DE8E788013A6AC040007CD7A /* Concurrent_NSOperation */;
-			targetProxy = DE8E78A913A6AC050007CD7A /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		DE8E788E13A6AC050007CD7A /* InfoPlist.strings */ = {
@@ -352,50 +267,6 @@
 			};
 			name = Release;
 		};
-		DE8E78BC13A6AC050007CD7A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Concurrent_NSOperation.app/Concurrent_NSOperation";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Concurrent_NSOperationTests/Concurrent_NSOperationTests-Prefix.pch";
-				INFOPLIST_FILE = "Concurrent_NSOperationTests/Concurrent_NSOperationTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					SenTestingKit,
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		DE8E78BD13A6AC050007CD7A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Concurrent_NSOperation.app/Concurrent_NSOperation";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Concurrent_NSOperationTests/Concurrent_NSOperationTests-Prefix.pch";
-				INFOPLIST_FILE = "Concurrent_NSOperationTests/Concurrent_NSOperationTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					SenTestingKit,
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -413,15 +284,6 @@
 			buildConfigurations = (
 				DE8E78B913A6AC050007CD7A /* Debug */,
 				DE8E78BA13A6AC050007CD7A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		DE8E78BB13A6AC050007CD7A /* Build configuration list for PBXNativeTarget "Concurrent_NSOperationTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DE8E78BC13A6AC050007CD7A /* Debug */,
-				DE8E78BD13A6AC050007CD7A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
