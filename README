@@ -21,7 +21,7 @@
 // THE SOFTWARE.
 //
 
-This project allows you to explore the full usage of Concurrent NSOperations. Refer to Apple's "Concurrency Programming Guide", the NSOpeation Class Reference, and the NSOperationQueue class reference for general background details.
+This project allows you to explore the full usage of Concurrent NSOperations. Refer to Apple's "Concurrency Programming Guide", the NSOperation Class Reference, and the NSOperationQueue class reference for general background details.
 
 The above docs tell you that concurrent operations exist, but also tell you they have little value for most developers. Well that might have been true at one time, but on iOS this style meshes perfectly with asunchronous NSURLConnections.
 

@@ -8,12 +8,15 @@
 
 #import "ConcurrentOp.h"
 
+#if ! __has_feature(objc_arc)
+#error THIS CODE MUST BE COMPILED WITH ARC ENABLED!
+#endif
 
 @interface ConcurrentOp ()
 @property (nonatomic, assign) BOOL executing, finished;
 @property (nonatomic, assign) int loops;
-@property (nonatomic, retain) NSTimer *timer;
-@property (nonatomic, retain) NSURLConnection *connection;
+@property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, strong) NSURLConnection *connection;
 
 - (BOOL)setup;
 - (void)timer:(NSTimer *)timer;
@@ -47,43 +50,43 @@
 	}
 
 	NSLog(@"OP: start");
-	NSAutoreleasePool *pool = [NSAutoreleasePool new];
+	@autoreleasepool {
 
-	loops = 1;	// testing
-	self.thread	= [NSThread currentThread];	// do this first, to enable future messaging
-	self.timer	= [NSTimer scheduledTimerWithTimeInterval:60*60 target:self selector:@selector(timer:) userInfo:nil repeats:NO];	// makes runloop functional
-	
+		loops = 1;	// testing
+		self.thread	= [NSThread currentThread];	// do this first, to enable future messaging
+		self.timer	= [NSTimer scheduledTimerWithTimeInterval:60*60 target:self selector:@selector(timer:) userInfo:nil repeats:NO];
+			// makes runloop functional
+		
     [self willChangeValueForKey:@"isExecuting"];
     executing = YES;
     [self didChangeValueForKey:@"isExecuting"];
-	
+		
     BOOL allOK = [self setup];
 
-	if(allOK) {
-		while(![self isFinished]) {
-			//NSLog(@"main: sitting in loop (loops=%d)", loops);
-			BOOL ret = [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
-			assert(ret && "first assert"); // could remove this - its here to convince myself all is well
-		}
-		NSLog(@"OP: finished - %@", [self isCancelled] ? @"was canceled" : @"normal completion");
-	} else {
-		[self finish];
+		if(allOK) {
+			while(![self isFinished]) {
+				assert([NSThread currentThread] == thread);
+				//NSLog(@"main: sitting in loop (loops=%d)", loops);
+				BOOL ret = [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+				assert(ret && "first assert"); // could remove this - its here to convince myself all is well
+			}
+			NSLog(@"OP: finished - %@", [self isCancelled] ? @"was canceled" : @"normal completion");
+		} else {
+			[self finish];
 
-		NSLog(@"OP: finished - setup failed");
+			NSLog(@"OP: finished - setup failed");
+		}
+		// Objects retaining us
 		[timer invalidate], self.timer = nil;
 		[connection cancel], self.connection = nil;
 	}
-	// Objects retaining us
-	[timer invalidate], self.timer = nil;
-	[connection cancel], self.connection = nil;
-	[pool drain];
 }
 
 - (BOOL)setup
 {
 	NSLog(@"OP: setup");
 	NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString: @"http://images.apple.com/home/images/icloud_title.png"]];
-	self.connection =  [[[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO] autorelease];
+	self.connection =  [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
 
 #if !TARGET_OS_IPHONE // Apple bug in OSX (still in Snow Leopard)
 	[connection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
@@ -134,11 +137,9 @@
 {
 	NSLog(@"OP: dealloc"); // didn't always see this message :-)
 
-	[timer invalidate], [timer release];
-	[connection cancel], [connection release];
-	[webData release];
+	[timer invalidate], timer;
+	[connection cancel], connection;
 
-	[super dealloc];
 }
 
 @end

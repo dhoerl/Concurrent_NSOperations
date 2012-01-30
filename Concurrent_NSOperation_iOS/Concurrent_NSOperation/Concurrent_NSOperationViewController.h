@@ -21,14 +21,14 @@
 	UISwitch *preCancel;
 */
 }
-@property (nonatomic, retain) IBOutlet UIButton *run;
-@property (nonatomic, retain) IBOutlet UIButton *cancel;
-@property (nonatomic, retain) IBOutlet UISwitch *failSwitch;
-@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
-@property (nonatomic, retain) IBOutlet UIButton *finishOp;
-@property (nonatomic, retain) IBOutlet UIButton *messageOp;
-@property (nonatomic, retain) IBOutlet UIButton *connectionOp;
-@property (nonatomic, retain) IBOutlet UISwitch *preCancel;
+@property (nonatomic, strong) IBOutlet UIButton *run;
+@property (nonatomic, strong) IBOutlet UIButton *cancel;
+@property (nonatomic, strong) IBOutlet UISwitch *failSwitch;
+@property (nonatomic, strong) IBOutlet UIActivityIndicatorView *spinner;
+@property (nonatomic, strong) IBOutlet UIButton *finishOp;
+@property (nonatomic, strong) IBOutlet UIButton *messageOp;
+@property (nonatomic, strong) IBOutlet UIButton *connectionOp;
+@property (nonatomic, strong) IBOutlet UISwitch *preCancel;
 
 - (IBAction)runNow:(id)sender;
 - (IBAction)cancelNow:(id)sender;

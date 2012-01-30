@@ -8,6 +8,10 @@
 
 #import "Concurrent_NSOperationAppDelegate.h"
 
+#if ! __has_feature(objc_arc)
+#error THIS CODE MUST BE COMPILED WITH ARC ENABLED!
+#endif
+
 #import "Concurrent_NSOperationViewController.h"
 
 @implementation Concurrent_NSOperationAppDelegate
@@ -66,11 +70,5 @@
 	 */
 }
 
-- (void)dealloc
-{
-	[_window release];
-	[_viewController release];
-    [super dealloc];
-}
 
 @end

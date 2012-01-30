@@ -10,11 +10,15 @@
 
 #import "ConcurrentOp.h"
 
+#if ! __has_feature(objc_arc)
+#error THIS CODE MUST BE COMPILED WITH ARC ENABLED!
+#endif
+
 static char *runnerContext = "runnerContext";
 
 @interface Concurrent_NSOperationViewController ()
-@property (nonatomic, retain) NSOperationQueue *queue;
-@property (nonatomic, retain) NSMutableSet *operations;
+@property (nonatomic, strong) NSOperationQueue *queue;
+@property (nonatomic, strong) NSMutableSet *operations;
 
 - (void)operationDidFinish:(ConcurrentOp *)operation;
 
@@ -34,7 +38,7 @@ static char *runnerContext = "runnerContext";
 
 - (IBAction)runNow:(id)sender
 {
-	ConcurrentOp *runner = [[ConcurrentOp new] autorelease];
+	ConcurrentOp *runner = [ConcurrentOp new];
 	runner.failInSetup = failSwitch.on;
 
 	run.enabled = NO, run.alpha = 0.5f;
@@ -86,7 +90,7 @@ static char *runnerContext = "runnerContext";
     [super viewDidLoad];
 	
 	self.operations = [NSMutableSet setWithCapacity:1];
-	self.queue = [[NSOperationQueue new] autorelease];
+	self.queue = [NSOperationQueue new];
 
 	cancel.enabled = NO, cancel.alpha = 0.5f;
 	messageOp.enabled = NO, messageOp.alpha = 0.5f;
@@ -101,7 +105,8 @@ static char *runnerContext = "runnerContext";
 	if(context == runnerContext) {
 		if(op.isFinished == YES) {
 			// we get this on the operation's thread
-			[self performSelectorOnMainThread:@selector(operationDidFinish:) withObject:op waitUntilDone:NO];
+			//[self performSelectorOnMainThread:@selector(operationDidFinish:) withObject:op waitUntilDone:NO];
+			dispatch_async(dispatch_get_main_queue(), ^{ [self operationDidFinish:op]; } );
 		} else {
 			//NSLog(@"NSOperation starting to RUN!!!");
 		}
@@ -154,20 +159,6 @@ static char *runnerContext = "runnerContext";
     [super viewDidUnload];
 }
 
-- (void)dealloc
-{
-    [run release];
-    [cancel release];
-    [spinner release];
-	[queue release];
-	[failSwitch release];
-	[finishOp release];
-	[messageOp release];
-    [connectionOp release];
-	[preCancel release];
-
-    [super dealloc];
-}
 
 
 #pragma mark - View lifecycle

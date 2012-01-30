@@ -10,15 +10,15 @@
 
 @interface Concurrent_NSOperations_MacAppDelegate : NSObject <NSApplicationDelegate>
 {}
-@property (nonatomic, assign) IBOutlet NSWindow *window;
-@property (nonatomic, assign) IBOutlet NSButton *run;
-@property (nonatomic, assign) IBOutlet NSButton *cancel;
-@property (nonatomic, assign) IBOutlet NSButton *failSwitch;
-@property (nonatomic, assign) IBOutlet NSProgressIndicator *spinner;
-@property (nonatomic, assign) IBOutlet NSButton *finishOp;
-@property (nonatomic, assign) IBOutlet NSButton *messageOp;
-@property (nonatomic, assign) IBOutlet NSButton *connectionOp;
-@property (nonatomic, assign) IBOutlet NSButton *preCancel;
+@property (nonatomic, unsafe_unretained) IBOutlet NSWindow *window;
+@property (nonatomic, weak) IBOutlet NSButton *run;
+@property (nonatomic, weak) IBOutlet NSButton *cancel;
+@property (nonatomic, weak) IBOutlet NSButton *failSwitch;
+@property (nonatomic, weak) IBOutlet NSProgressIndicator *spinner;
+@property (nonatomic, weak) IBOutlet NSButton *finishOp;
+@property (nonatomic, weak) IBOutlet NSButton *messageOp;
+@property (nonatomic, weak) IBOutlet NSButton *connectionOp;
+@property (nonatomic, weak) IBOutlet NSButton *preCancel;
 
 - (IBAction)runNow:(id)sender;
 - (IBAction)cancelNow:(id)sender;

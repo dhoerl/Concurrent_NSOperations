@@ -13,8 +13,8 @@
 static char *runnerContext = "runnerContext";
 
 @interface Concurrent_NSOperations_MacAppDelegate ()
-@property (nonatomic, retain) NSOperationQueue *queue;
-@property (nonatomic, retain) NSMutableSet *operations;
+@property (nonatomic, strong) NSOperationQueue *queue;
+@property (nonatomic, strong) NSMutableSet *operations;
 
 - (void)operationDidFinish:(ConcurrentOp *)operation;
 
@@ -36,7 +36,7 @@ static char *runnerContext = "runnerContext";
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
 	self.operations = [NSMutableSet setWithCapacity:1];
-	self.queue = [[NSOperationQueue new] autorelease];
+	self.queue = [NSOperationQueue new];
 	
 	[cancel setEnabled:NO];
 	[messageOp setEnabled:NO];
@@ -47,7 +47,7 @@ static char *runnerContext = "runnerContext";
 
 - (IBAction)runNow:(id)sender
 {
-	ConcurrentOp *runner = [[ConcurrentOp new] autorelease];
+	ConcurrentOp *runner = [ConcurrentOp new];
 	runner.failInSetup = [failSwitch state];
 
 	[run setEnabled:NO];
@@ -138,20 +138,5 @@ static char *runnerContext = "runnerContext";
 	NSLog(@"Operation Succeeded: webData = %lx", (unsigned long)operation.webData);
 }
 
-- (void)dealloc
-{
-    [run release];
-    [cancel release];
-    [spinner release];
-	[queue release];
-	[operations release];
-	[failSwitch release];
-	[finishOp release];
-	[messageOp release];
-    [connectionOp release];
-	[preCancel release];
-
-    [super dealloc];
-}
 
 @end
