@@ -137,8 +137,8 @@
 {
 	NSLog(@"OP: dealloc"); // didn't always see this message :-)
 
-	[timer invalidate], timer;
-	[connection cancel], connection;
+	[timer invalidate], timer = nil;
+	[connection cancel], connection = nil;
 
 }
 

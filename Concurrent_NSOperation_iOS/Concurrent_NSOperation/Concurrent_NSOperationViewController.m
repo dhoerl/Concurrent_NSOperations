@@ -17,6 +17,15 @@
 static char *runnerContext = "runnerContext";
 
 @interface Concurrent_NSOperationViewController ()
+@property (nonatomic, strong) IBOutlet UIButton *run;
+@property (nonatomic, strong) IBOutlet UIButton *cancel;
+@property (nonatomic, strong) IBOutlet UISwitch *failSwitch;
+@property (nonatomic, strong) IBOutlet UIActivityIndicatorView *spinner;
+@property (nonatomic, strong) IBOutlet UIButton *finishOp;
+@property (nonatomic, strong) IBOutlet UIButton *messageOp;
+@property (nonatomic, strong) IBOutlet UIButton *connectionOp;
+@property (nonatomic, strong) IBOutlet UISwitch *preCancel;
+
 @property (nonatomic, strong) NSOperationQueue *queue;
 @property (nonatomic, strong) NSMutableSet *operations;
 

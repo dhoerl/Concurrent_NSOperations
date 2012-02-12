@@ -6,12 +6,9 @@
 //  Copyright 2011 David Hoerl. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @class Concurrent_NSOperationViewController;
 
 @interface Concurrent_NSOperationAppDelegate : NSObject <UIApplicationDelegate>
-{}
 @property (nonatomic, strong) IBOutlet UIWindow *window;
 @property (nonatomic, strong) IBOutlet Concurrent_NSOperationViewController *viewController;
 
