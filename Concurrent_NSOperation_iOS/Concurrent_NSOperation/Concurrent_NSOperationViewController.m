@@ -68,11 +68,12 @@ static char *runnerContext = "runnerContext";
 
 - (IBAction)cancelNow:(id)sender
 {
-	[queue cancelAllOperations];
-	[queue waitUntilAllOperationsAreFinished];
-	
+	// Stop listening first
 	[operations enumerateObjectsUsingBlock:^(id obj, BOOL *stop) { [obj removeObserver:self forKeyPath:@"isFinished"]; }];   
     [self.operations removeAllObjects];
+
+	[queue cancelAllOperations];
+	[queue waitUntilAllOperationsAreFinished];
 }
 
 // These three methods are how we can safely message the Operation directly without a "convenience" method in the operation class itself
