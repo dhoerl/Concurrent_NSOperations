@@ -26,4 +26,8 @@
 - (IBAction)finishNow:(id)sender;
 - (IBAction)connectNow:(id)sender;
 
+// utility commands
+- (NSSet *)operationsSet;
+- (NSUInteger)operationsCount;
+
 @end

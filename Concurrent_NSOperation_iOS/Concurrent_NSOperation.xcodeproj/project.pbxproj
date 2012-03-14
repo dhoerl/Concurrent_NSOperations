@@ -135,7 +135,7 @@
 		DE8E787813A6AC040007CD7A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 			};
 			buildConfigurationList = DE8E787B13A6AC040007CD7A /* Build configuration list for PBXProject "Concurrent_NSOperation" */;
 			compatibilityVersion = "Xcode 3.2";

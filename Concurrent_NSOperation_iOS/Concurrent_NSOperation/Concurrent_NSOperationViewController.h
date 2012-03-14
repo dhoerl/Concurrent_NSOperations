@@ -6,8 +6,6 @@
 //  Copyright 2011 David Hoerl. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @interface Concurrent_NSOperationViewController : UIViewController
 
 - (IBAction)runNow:(id)sender;
@@ -15,5 +13,9 @@
 - (IBAction)messageNow:(id)sender;
 - (IBAction)finishNow:(id)sender;
 - (IBAction)connectNow:(id)sender;
+
+// utility commands
+- (NSSet *)operationsSet;
+- (NSUInteger)operationsCount;
 
 @end

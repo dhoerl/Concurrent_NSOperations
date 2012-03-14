@@ -15,6 +15,7 @@ static char *runnerContext = "runnerContext";
 @interface Concurrent_NSOperations_MacAppDelegate ()
 @property (nonatomic, strong) NSOperationQueue *queue;
 @property (nonatomic, strong) NSMutableSet *operations;
+@property (nonatomic, assign) dispatch_queue_t operationsQueue;
 
 - (void)operationDidFinish:(ConcurrentOp *)operation;
 
@@ -32,11 +33,13 @@ static char *runnerContext = "runnerContext";
 @synthesize spinner;
 @synthesize queue;
 @synthesize operations;
+@synthesize operationsQueue;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
 	self.operations = [NSMutableSet setWithCapacity:1];
 	self.queue = [NSOperationQueue new];
+	self.operationsQueue = dispatch_queue_create("com.dfh.operationsQueue", DISPATCH_QUEUE_CONCURRENT);
 	
 	[cancel setEnabled:NO];
 	[messageOp setEnabled:NO];
@@ -62,37 +65,55 @@ static char *runnerContext = "runnerContext";
 	
 	// Order is important here
 	[runner addObserver:self forKeyPath:@"isFinished" options:0 context:runnerContext];	// First, observe isFinished
-	[operations addObject:runner];	// Second we retain and save a reference to the operation
+	dispatch_barrier_async(operationsQueue, ^
+		{
+			[operations addObject:runner];	// Second we retain and save a reference to the operation
+		} );
 	[queue addOperation:runner];	// Lastly, lets get going!
 }
 
 - (IBAction)cancelNow:(id)sender
 {
+	// Stop listening first
+	dispatch_sync(operationsQueue, ^
+		{
+			[operations enumerateObjectsUsingBlock:^(id obj, BOOL *stop) { [obj removeObserver:self forKeyPath:@"isFinished"]; }];   
+		} );
+	dispatch_barrier_sync(operationsQueue, ^
+		{
+			[operations removeAllObjects];
+		} );
+
 	[queue cancelAllOperations];
 	[queue waitUntilAllOperationsAreFinished];
-	
-	// note that all the operationDidFinish: messages are now queued in the main runLoop.
-	[operations enumerateObjectsUsingBlock:^(id obj, BOOL *stop) { [obj removeObserver:self forKeyPath:@"isFinished"]; }];
-    [self.operations removeAllObjects];
 }
 
 // These three methods are how we can safely message the Operation directly without a "convenience" method in the operation class itself
 - (IBAction)messageNow:(id)sender
 {
-	for(ConcurrentOp *op in operations)
-		[op performSelector:@selector(wakeUp) onThread:op.thread withObject:nil waitUntilDone:NO];
+	dispatch_barrier_sync(operationsQueue, ^
+		{
+			for(ConcurrentOp *op in operations)
+				[op performSelector:@selector(wakeUp) onThread:op.thread withObject:nil waitUntilDone:NO];
+		} );
 }
 
 - (IBAction)finishNow:(id)sender
 {
-	for(ConcurrentOp *op in operations)
-		[op performSelector:@selector(finish) onThread:op.thread withObject:nil waitUntilDone:NO];
+	dispatch_barrier_sync(operationsQueue, ^
+		{
+			for(ConcurrentOp *op in operations)
+				[op performSelector:@selector(finish) onThread:op.thread withObject:nil waitUntilDone:NO];
+		} );
 }
 
 - (IBAction)connectNow:(id)sender
 {
-	for(ConcurrentOp *op in operations)
-		[op performSelector:@selector(runConnection) onThread:op.thread withObject:nil waitUntilDone:NO];
+	dispatch_barrier_sync(operationsQueue, ^
+		{
+			for(ConcurrentOp *op in operations)
+				[op runConnection]; // convenience method - call directly
+		} );
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -125,11 +146,19 @@ static char *runnerContext = "runnerContext";
 
 	// if you cancel the operation when its in the set, will hit this case
 	// since observeValueForKeyPath: queues this message on the main thread
-	if(![self.operations containsObject:operation]) return;
+	__block BOOL containsObject;
+	dispatch_sync(operationsQueue, ^
+		{
+            containsObject = [self.operations containsObject:operation];
+        } );
+	if(!containsObject) return;
 	
 	// If we are in the queue, then we have to both remove our observation and queue membership
 	[operation removeObserver:self forKeyPath:@"isFinished"];
-	[operations removeObject:operation];
+	dispatch_barrier_async(operationsQueue, ^
+		{
+			[operations removeObject:operation];
+		} );
 	
 	// This would be the case if cancelled before we start running.
 	if(operation.isCancelled) return;
@@ -138,5 +167,23 @@ static char *runnerContext = "runnerContext";
 	NSLog(@"Operation Succeeded: webData = %lx", (unsigned long)operation.webData);
 }
 
+- (NSSet *)operationsSet
+{
+	__block NSSet *set;
+	dispatch_sync(operationsQueue, ^
+		{
+            set = [NSSet setWithSet:operations];
+        } );
+	return set;
+}
+- (NSUInteger)operationsCount
+{
+	__block NSUInteger count;
+	dispatch_sync(operationsQueue, ^
+		{
+            count = [operations count];
+        } );
+	return count;
+}
 
 @end

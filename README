@@ -1,6 +1,6 @@
 
 // Concurrent_NSOperation (TM)
-// Copyright (C) 2011 by David Hoerl
+// Copyright (C) 2011-2012 by David Hoerl
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 //
+
+v1.2:
+- add a concurrent queue to insure access to the "operations" set is thread safe
+- note that this code is being used in several apps in the app store.
+
 
 This project allows you to explore the full usage of Concurrent NSOperations. Refer to Apple's "Concurrency Programming Guide", the NSOperation Class Reference, and the NSOperationQueue class reference for general background details.
 
